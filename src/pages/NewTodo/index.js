@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import { Link , useNavigate} from "react-router-dom";
 import './styles.css'
 import '../../global.css'
 
@@ -7,7 +7,44 @@ import {FiArrowLeft} from 'react-icons/fi'
 
 import logo from '../../assets/logo1.png';
 
+import api from '../../services/api'
+
 export default function NewTodo(){
+
+
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [deadlineDate, setDeadeLineDate] = useState('');
+    const [priority, setPriority] = useState('');
+    const [status, setStatus] = useState('');
+    const navigate = useNavigate();
+
+    const accessToken = localStorage.getItem('accessToken');
+
+    
+    async function createNewTodo(e) {
+        e.preventDefault();
+        
+        const data ={
+            title,
+            description,
+            deadlineDate,
+            priority,
+            status,
+        }
+
+        
+
+        try {
+            console.log(`Token new: ${accessToken}`)
+            await api.post('todo',data,{headers:{ Authorization: `Bearer ${accessToken}`, "Content-Type": 'application/json'}})
+            navigate('/todos');
+        } catch (error) {
+            alert('Erro ao gravar a tarefa! tente novamente')
+        }
+
+    }
+
     return(
         <div className="new-todo-container">
             <div className="content">
@@ -20,12 +57,37 @@ export default function NewTodo(){
                         Home
                     </Link> 
                 </section>
-                <form >
-                    <input type="text" placeholder="Título"/>
-                    <input type="text" placeholder="Descrição"/>
-                    <input type="date" placeholder="Data limite"/>
-                    <input type="text" placeholder="Prioridade"/>
-                    <input type="text" placeholder="Status"/>
+                <form onSubmit={createNewTodo} >
+                    <input 
+                        type="text" 
+                        placeholder="Título"
+                        value= {title}
+                        onChange={e => setTitle(e.target.value)}
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="Descrição"
+                        value= {description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                    <input 
+                        type="date" 
+                        placeholder="Data limite"
+                        value= {deadlineDate}
+                        onChange={e => setDeadeLineDate(e.target.value)}
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="Prioridade"
+                        value= {priority}
+                        onChange={e => setPriority(e.target.value)}
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="Status"
+                        value= {status}
+                        onChange={e => setStatus(e.target.value)}
+                    />
                     <button type="submit">Adicionar</button>
                 </form>
             </div>
