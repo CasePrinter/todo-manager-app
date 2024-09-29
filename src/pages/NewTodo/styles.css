@@ -56,6 +56,10 @@
 .new-todo-container .content form input{
     margin-top: 8px;
 }
+.new-todo-container .content form select{
+    margin-top: 8px;
+}
+
 .new-todo-container .content form input[type="date"]:not(.has-value):before{
     color: #737380;
     content: attr(placeholder);

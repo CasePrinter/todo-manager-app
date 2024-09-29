@@ -11,7 +11,7 @@ export default function RoutesApp(){
             <Routes>
                 <Route path='/' element={<Login/>}/>
                 <Route path='/todos' element={<Todos/>}/>
-                <Route path='/todos/new' element={<NewTodo/>}/>
+                <Route path='/todos/new/:todoId' element={<NewTodo/>}/>
             </Routes>
         </BrowserRouter>
     )
