@@ -7,6 +7,9 @@ on:
   push:
     branches:
       - homologacao
+  pull_request:
+    branches:
+      - homologacao
 
 jobs:
   dockerize-and-deploy:
