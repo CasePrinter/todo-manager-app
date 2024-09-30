@@ -118,18 +118,7 @@ export default function NewTodo(){
                         <option value="DOING">Fazendo</option>
                         <option value="FINISHED">Finalizado</option>
                     </select>
-                    {/* <input 
-                        type="text" 
-                        placeholder="Prioridade"
-                        value= {priority}
-                        onChange={e => setPriority(e.target.value)}
-                    />
-                    <input 
-                        type="text" 
-                        placeholder="Status"
-                        value= {status}
-                        onChange={e => setStatus(e.target.value)}
-                    /> */}
+                    
                     <button type="submit">{todoId === '0' ? 'Adicionar' : 'Atualizar'}</button>
                 </form>
             </div>
