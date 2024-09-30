@@ -50,6 +50,9 @@ export default function Todos(){
             <header>
                 <img src={logo} alt="LOGO" />
                 <span>Bem vindo, <strong>{username.toUpperCase()} </strong></span>
+                <Link rel="stylesheet" to="/user/new" className="button">
+                        Criar Usuário
+                </Link> 
                 <Link className="button" to="new/0">Adicione uma nova tarefa</Link>
                 <button type="button" onClick={logout}><FiPower size={18} color="#2D3E50"/></button>
             </header>
